@@ -8,6 +8,7 @@
 using namespace std;
 extern "C" void AvxPackedMathF32_(const YmmVal & a, const YmmVal & b, YmmVal c[8]);
 extern "C" void AvxPackedMathF64_(const YmmVal & a, const YmmVal & b, YmmVal c[8]);
+
 void AvxPackedMathF32(void)
 {
 	alignas(32) YmmVal a;
@@ -79,10 +80,11 @@ void AvxPackedMathF64(void)
 	cout << "minpd[1]: " << c[6].ToStringF64(1) << '\n';
 	cout << "maxpd[1]: " << c[7].ToStringF64(1) << '\n';
 }
+
 int main()
 {
-	bench::benchmark(AvxPackedMathF32, "AVXPasckedMathF32", 10000);
-	bench::benchmark(AvxPackedMathF64, "AVXPasckedMathF64", 10000);
+	bench::benchmark(AvxPackedMathF32, "AVXPasckedMathF32", 100);
+	bench::benchmark(AvxPackedMathF64, "AVXPasckedMathF64", 100);
 	//AvxPackedMathF32();
 	//AvxPackedMathF64();
 	return 0;
